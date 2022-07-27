@@ -5,6 +5,9 @@ import io.reactivex.Flowable
 
 interface MainRepository {
 
-    fun getLatestGames(): Flowable<LatestGamesResponse>
+    fun getLatestGames(
+        pageSize: Int,
+        ordering: String
+    ): Flowable<LatestGamesResponse>
 
 }
