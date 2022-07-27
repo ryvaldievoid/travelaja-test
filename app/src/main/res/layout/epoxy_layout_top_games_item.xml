@@ -5,9 +5,6 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="viewModel"
-            type="com.atech.android.feature.home.HomeViewModel" />
-        <variable
             name="model"
             type="com.atech.android.domain.entities.responses.Result" />
     </data>

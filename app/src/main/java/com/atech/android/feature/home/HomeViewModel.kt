@@ -17,6 +17,7 @@ class HomeViewModel(
 
     private val _topRatedGames = MutableLiveData<ResultState<List<Result>>>()
     val topRatedGames : LiveData<ResultState<List<Result>>> = _topRatedGames
+    private val tempRatedList = mutableListOf<Result>()
 
     private val _latestGames = MutableLiveData<ResultState<List<Result>>>()
     val latestGames : LiveData<ResultState<List<Result>>> = _latestGames
@@ -33,15 +34,15 @@ class HomeViewModel(
                 override fun onError(error: ResultState<LatestGamesResponse>) {
                     val throwable = (error as ResultState.Error).throwable
                     _topRatedGames.value = ResultState.Error(throwable)
-                    _needRefreshCarousel.value = SingleEvents(false)
                 }
 
                 override fun onSuccess(data: ResultState<LatestGamesResponse>) {
                     (data as ResultState.Success).data.let { response ->
-                        _topRatedGames.value = ResultState.Success(
-                            response.results ?: listOf()
-                        )
-                        _needRefreshCarousel.value = SingleEvents(true)
+                        if (tempRatedList.isEmpty()) {
+                            tempRatedList.addAll(response.results ?: listOf())
+                            _topRatedGames.value = ResultState.Success(tempRatedList)
+                            _needRefreshCarousel.value = SingleEvents(true)
+                        }
                     }
                 }
 

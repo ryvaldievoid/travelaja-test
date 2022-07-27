@@ -7,7 +7,8 @@ interface MainRepository {
 
     fun getLatestGames(
         pageSize: Int,
-        ordering: String
+        ordering: String?,
+        search: String?
     ): Flowable<LatestGamesResponse>
 
 }
