@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_staging" translatable="false">Test STAGING</string>
+    <string name="app_name_dev" translatable="false">Test DEV</string>
+    <string name="app_name_prod" translatable="false">Test Now</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_profile">Profile</string>
+</resources>
