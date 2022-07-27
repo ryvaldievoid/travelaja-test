@@ -168,4 +168,11 @@ dependencies {
     //firebase
     implementation platform(firebase.bom)
     implementation firebase.analyticsKtx
+
+    //epoxy
+    implementation epoxy.epoxy
+    kapt epoxy.processor
+    kaptTest epoxy.processor
+    implementation epoxy.databinding
+    implementation epoxy.annotation
 }

@@ -40,4 +40,5 @@
     <color name="checkbox_title_color">#FFFFFF</color>
     <color name="account_text_background">#1AF5F5F5</color>
     <color name="ticket_divider">#888888</color>
+    <color name="gold">#FFD700</color>
 </resources>
