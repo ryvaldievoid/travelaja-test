@@ -1,12 +1,13 @@
 package com.atech.android.feature.home
 
-import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.airbnb.epoxy.Carousel
 import com.atech.android.TopGamesItemBindingModel_
 import com.atech.android.base.BaseFragment
 import com.atech.android.base.util.hide
+import com.atech.android.base.util.hideKeyboard
 import com.atech.android.base.util.show
 import com.atech.android.base.util.showToast
 import com.atech.android.databinding.FragmentHomeBinding
@@ -24,8 +25,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun onInitViews() {
         super.onInitViews()
+        initSearchBar()
         initTopRatedRecyclerView()
         initLatestRecyclerView()
+        viewModel.apply {
+            getTopRatedGames()
+            getLatestGames()
+        }
     }
 
     override fun onInitObservers() {
@@ -38,6 +44,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
         viewModel.needRefreshCarousel.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { _ ->
+                viewModel.topRatedGames.value?.let { data ->
+
+                }
                 binding.topRatedRecycler.requestModelBuild()
             }
         }
@@ -45,6 +54,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.needRefreshRecyclerView.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { _ ->
                 binding.latestRecycler.requestModelBuild()
+            }
+        }
+    }
+
+    private fun initSearchBar() {
+        binding.searchLayout.searchBar.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                view.hideKeyboard()
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+                )
             }
         }
     }
@@ -63,19 +83,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                             show()
                             binding.progressBar.hide()
                             resultState.data.let { items ->
-                                val bannerModel = items.mapIndexed { index, model ->
+                                val bannerModel = items.toMutableList().mapIndexed { index, model ->
                                     TopGamesItemBindingModel_()
                                         .id("top rated games $index")
-                                        .viewModel(viewModel)
                                         .model(model)
                                 }
                                 setModels(bannerModel)
                                 setPadding(
                                     Carousel.Padding.dp(
-                                        paddingLeft,
-                                        paddingTop,
-                                        paddingRight,
-                                        paddingBottom,
+                                        20,
+                                        0,
+                                        20,
+                                        0,
                                         0
                                     )
                                 )
@@ -114,7 +133,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                             items.mapIndexed { index, model ->
                                 topGamesItem {
                                     id("latest games $index")
-                                    viewModel(viewModel)
                                     model(model)
                                 }
                             }
@@ -126,14 +144,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     }
                 }
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.apply {
-            getTopRatedGames()
-            getLatestGames()
         }
     }
 

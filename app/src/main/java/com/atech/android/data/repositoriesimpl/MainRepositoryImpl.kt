@@ -6,7 +6,11 @@ import com.atech.android.domain.repositories.MainRepository
 import io.reactivex.Flowable
 
 class MainRepositoryImpl(private val api: MainApi): MainRepository {
-    override fun getLatestGames(pageSize: Int, ordering: String): Flowable<LatestGamesResponse> {
-        return api.getLatestGames(pageSize, ordering)
+    override fun getLatestGames(
+        pageSize: Int,
+        ordering: String?,
+        search: String?
+    ): Flowable<LatestGamesResponse> {
+        return api.getLatestGames(pageSize, ordering, search)
     }
 }

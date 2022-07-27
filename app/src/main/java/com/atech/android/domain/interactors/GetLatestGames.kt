@@ -12,12 +12,13 @@ class GetLatestGames constructor(
 ): FlowableUseCase<LatestGamesResponse, GetLatestGames.Params>(postExecutionThread) {
 
     override fun build(params: Params): Flowable<LatestGamesResponse> {
-        return repository.getLatestGames(params.pageSize, params.ordering)
+        return repository.getLatestGames(params.pageSize, params.ordering, params.search)
     }
 
     class Params(
         val pageSize: Int,
-        val ordering: String
+        val ordering: String? = null,
+        val search: String? = null
     )
 
 }

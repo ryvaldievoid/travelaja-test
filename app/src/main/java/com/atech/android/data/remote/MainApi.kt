@@ -11,7 +11,8 @@ interface MainApi {
     @GET("/api/games?key=${BuildConfig.API_KEY}&platforms=4&page=1")
     fun getLatestGames(
         @Query("page_size") pageSize: Int,
-        @Query("ordering") ordering: String
+        @Query("ordering") ordering: String?,
+        @Query("search") search: String?
     ): Flowable<LatestGamesResponse>
 
 }

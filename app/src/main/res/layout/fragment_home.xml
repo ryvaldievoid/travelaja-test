@@ -13,11 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include android:id="@+id/search_layout" layout="@layout/view_search_bar" />
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/first_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/black"
