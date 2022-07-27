@@ -13,7 +13,7 @@ import com.atech.android.base.viewmodel.BaseViewModel
  * Created by Abraham Lay on 2020-06-09.
  */
 @SuppressLint("Registered")
-abstract class BaseFragment<VB : ViewBinding,VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel?> : Fragment() {
     abstract val viewModel: VM
     abstract val binding: VB
 
