@@ -108,7 +108,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                                 )
                             }
                         }
-                        else -> {
+                        is ResultState.Error -> {
+                            showToast(resultState.throwable.message ?: "")
                             show()
                             binding.progressBar.hide()
                         }
@@ -138,7 +139,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                             }
                         }
                     }
-                    else -> {
+                    is ResultState.Error -> {
+                        showToast(resultState.throwable.message ?: "")
                         binding.latestRecycler.show()
                         binding.progressBar2.hide()
                     }

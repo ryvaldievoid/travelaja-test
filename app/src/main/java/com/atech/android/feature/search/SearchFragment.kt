@@ -89,7 +89,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
                             }
                         }
                     }
-                    else -> {
+                    is ResultState.Error -> {
+                        showToast(resultState.throwable.message ?: "")
                         binding.apply {
                             progressBar.hide()
                             searchRecycler.show()
