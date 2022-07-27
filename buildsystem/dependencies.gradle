@@ -52,6 +52,10 @@ ext {
     //firebase
     firebaseVersion = "28.2.0"
 
+    //epoxy recyclerview
+    epoxyVersion = "4.6.2"
+
+
     compose = [
             ui        : "androidx.compose.ui:ui:$composeVersion",
             tooling   : "androidx.compose.ui:ui-tooling:$composeVersion",
@@ -127,5 +131,12 @@ ext {
             coreTest      : "androidx.arch.core:core-testing:$coreTestVersion",
             coroutinesTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
             fragmentTest  : "androidx.fragment:fragment-testing:$fragmentTestVersion"
+    ]
+
+    epoxy = [
+            epoxy       :  "com.airbnb.android:epoxy:$epoxyVersion",
+            processor   :  "com.airbnb.android:epoxy-processor:$epoxyVersion",
+            databinding :  "com.airbnb.android:epoxy-databinding:$epoxyVersion",
+            annotation  :  "com.airbnb.android:epoxy-annotations:$epoxyVersion"
     ]
 }

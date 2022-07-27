@@ -12,6 +12,7 @@ import com.atech.android.domain.PostExecutionThread
 import com.atech.android.domain.interactors.GetLatestGames
 import com.atech.android.domain.repositories.MainRepository
 import com.atech.android.feature.home.HomeViewModel
+import com.atech.android.feature.search.SearchViewModel
 import com.google.gson.GsonBuilder
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -39,6 +40,11 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel {
         HomeViewModel(
+            get()
+        )
+    }
+    viewModel {
+        SearchViewModel(
             get()
         )
     }

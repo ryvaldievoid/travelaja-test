@@ -9,10 +9,16 @@ import io.reactivex.Flowable
 class GetLatestGames constructor(
     private val repository: MainRepository,
     postExecutionThread: PostExecutionThread
-): FlowableUseCase<LatestGamesResponse, Void?>(postExecutionThread) {
+): FlowableUseCase<LatestGamesResponse, GetLatestGames.Params>(postExecutionThread) {
 
-    override fun build(params: Void?): Flowable<LatestGamesResponse> {
-        return repository.getLatestGames()
+    override fun build(params: Params): Flowable<LatestGamesResponse> {
+        return repository.getLatestGames(params.pageSize, params.ordering, params.search)
     }
+
+    class Params(
+        val pageSize: Int,
+        val ordering: String? = null,
+        val search: String? = null
+    )
 
 }

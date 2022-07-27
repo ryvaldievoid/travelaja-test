@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.atech.android.domain.entities.responses.Result" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_8" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_220"
+            imageViewUrl="@{model.backgroundImage}" />
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@id/image"
+            android:background="@drawable/carousel_text_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{model.name}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_14"
+            android:padding="@dimen/size_8"/>
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:isIndicator="true"
+            android:layout_margin="@dimen/size_8"
+            android:progressTint="@color/gold"
+            android:progressBackgroundTint="@color/grey_F5F5F5_op_50"
+            android:rating="@{Float.valueOf(model.rating.toString())}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id "androidx.navigation.safeargs"
 }
 
 def cprops = new Properties()
@@ -167,4 +168,11 @@ dependencies {
     //firebase
     implementation platform(firebase.bom)
     implementation firebase.analyticsKtx
+
+    //epoxy
+    implementation epoxy.epoxy
+    kapt epoxy.processor
+    kaptTest epoxy.processor
+    implementation epoxy.databinding
+    implementation epoxy.annotation
 }

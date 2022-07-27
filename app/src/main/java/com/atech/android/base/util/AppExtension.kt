@@ -108,3 +108,11 @@ fun Fragment.showToast(message: String) {
 //fun BaseFragment<*, *>.hasPermissions(context: Context, permissions: Array<String>): Boolean = permissions.all {
 //    ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
 //}
+
+fun View.hide() {
+    this.visibility = View.GONE
+}
+
+fun View.show() {
+    this.visibility = View.VISIBLE
+}
